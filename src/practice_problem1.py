@@ -6,8 +6,8 @@ This problem provides practice at:
 
 Authors: David Mutchler, Vibha Alangar, Matt Boutell, Dave Fisher,
          Mark Hays, Amanda Stouder, Aaron Wilkin, their colleagues,
-         and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         and Derrick Swart.
+"""  # DONE: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 ###############################################################################
 # Students:
@@ -40,8 +40,8 @@ def main():
     # UN-comment tests as you work the problems.
     ###########################################################################
 
-    # run_test_init()
-    # run_test_append_string()
+    run_test_init()
+    run_test_append_string()
     # run_test_double()
     # run_test_shrink()
     # run_test_double_then_shrink()
@@ -95,7 +95,7 @@ class Box(object):
           :type volume: int
         """
         # ---------------------------------------------------------------------
-        # TODO: 2. Implement and test this function.
+        # done: 2. Implement and test this function.
         #     See the testing code (below) for more examples.
         # ---------------------------------------------------------------------
         # ---------------------------------------------------------------------
@@ -103,7 +103,10 @@ class Box(object):
         #    DIFFICULTY:      3
         #    TIME ESTIMATE:   5 minutes.
         # ---------------------------------------------------------------------
-
+        self.contents = contents
+        self.volume = volume
+        if len(contents) > self.volume:
+            self.contents = ''
     def append_string(self, additional_contents):
         """
         What comes in:
@@ -135,8 +138,27 @@ class Box(object):
         Type hints:
           :type additional_contents: str
         """
+        length = self.contents + additional_contents
+        diff_length = len(length) - self.volume
+        s = ''
+        self.contents = ''
+        if len(length) > self.volume:
+            for k in range (self.volume):
+                self.contents = self.contents + length[k]
+            for f in range (diff_length):
+                s = s + length[f + self.volume]
+        if len(length) <= self.volume:
+            self.contents = length
+
+        return s
+
+
+
+
+        return s
+
         # ---------------------------------------------------------------------
-        # TODO: 3. Implement and test this function.
+        # DONE: 3. Implement and test this function.
         #     See the testing code (below) for more examples.
         # ---------------------------------------------------------------------
         # ---------------------------------------------------------------------
@@ -205,7 +227,7 @@ class Box(object):
         # FOR FULL CREDIT, YOUR SOLUTION MUST BE NO MORE THAN
         #    ** TWO **   LINES OF CODE.
         #######################################################################
-
+        self.contents = self.contents * 2
     def shrink(self, new_volume):
         """
         What comes in:
